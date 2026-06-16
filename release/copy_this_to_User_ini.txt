@@ -1,0 +1,33 @@
+; ============================================================
+;  Gamepads of Valhalla - gamepad bindings for Rune Classic
+;  Paste into System\User.ini, section [Engine.Input], replacing
+;  the existing Joy1..Joy16 / JoyX..JoyV / JoyPov* lines.
+;  Do this with the game CLOSED (UE1 rewrites the ini on exit).
+; ============================================================
+
+Joy1=Jump
+Joy2=Powerup
+Joy3=Use
+Joy4=Throw
+Joy5=AltFire
+Joy6=Fire
+Joy7=cameraout
+Joy8=camerain
+Joy9=QuickSave
+Joy10=QuickLoad
+Joy11=Duck
+Joy12=CenterView
+Joy13=
+Joy14=
+Joy15=
+Joy16=
+JoyX=Axis aStrafe Speed=+1.0
+JoyY=Axis aBaseY Speed=+1.0
+JoyZ=
+JoyR=Axis aBaseX Speed=+1.0
+JoyU=Axis aLookUp Speed=+1.0
+JoyV=
+JoyPovRight=SwitchWeapon 4
+JoyPovLeft=SwitchWeapon 2
+JoyPovUp=SwitchWeapon 3
+JoyPovDown=SwitchWeapon 1

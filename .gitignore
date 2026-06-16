@@ -1,0 +1,18 @@
+# Build output
+/build/
+
+# Generated at configure time from the system winmm.dll — never committed
+/src/forwarders_generated.c
+/src/winmm.def
+
+# Binaries & archives are distributed via GitHub Releases, not committed
+*.dll
+*.exe
+*.zip
+
+# IDE / OS cruft
+.vs/
+.idea/
+*.user
+.DS_Store
+Thumbs.db
