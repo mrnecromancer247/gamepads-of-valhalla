@@ -14,8 +14,10 @@ GitHub Release, never committed. Steps:
    - `SDL2.dll`  (the **32-bit** runtime from https://libsdl.org , in `lib\x86`)
    - *(optional)* `gamecontrollerdb.txt` from https://github.com/mdqinc/SDL_GameControllerDB
 
-   `release/` already contains `sdljoy.ini`, `copy_this_to_User_ini.txt`, `README.txt` and
-   `THIRD_PARTY.txt`. Delete the `_PUT-DLLS-HERE.txt` placeholder.
+   `release/` already contains `sdljoy.ini`, `copy_this_to_User_ini.txt`,
+   the patcher (`apply-gamepad-config.bat`, `restore-original-config.bat`,
+   `patch-config.ps1`), `README.txt` and `THIRD_PARTY.txt`. Delete the
+   `_PUT-DLLS-HERE.txt` placeholder.
 
 3. **Zip** the *contents* of `release/` (not the folder itself) as
    `Gamepads-of-Valhalla-vX.Y.zip`.

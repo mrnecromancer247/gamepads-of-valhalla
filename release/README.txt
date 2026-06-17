@@ -18,35 +18,51 @@ WHAT'S IN THE PACK
 ------------------
   winmm.dll          - the shim (32-bit)
   SDL2.dll           - 32-bit SDL2 runtime
-  sdljoy.ini         - controller profile 
-  copy_this_to_User_ini.txt  - assigns for controller actions
- 
+  sdljoy.ini         - controller profile
+  copy_this_to_User_ini.txt   - controller action bindings
+  apply-gamepad-config.bat    - one-click patcher (edits User.ini & Rune.ini for you)
+  restore-original-config.bat - undo the patch (restores your backed-up .ini)
+  patch-config.ps1            - the patcher engine used by the .bat files
 
 NOTE: winmm.dll and SDL2.dll are both 32-bit (x86)
 
 
-INSTALL
--------
-1. Open the game folder: <Rune Classic>\System\
+INSTALL  (easy - with the patcher)
+----------------------------------
+1. Open the game folder: <Rune Classic>\System\   (next to Rune.exe)
 
-2. Back up User.ini and Rune.ini.
+2. Copy ALL files from this pack into that System\ folder.
 
-3. Copy winmm.dll, SDL2.dll, sdljoy.ini into System\ 
+3. Make sure Rune is CLOSED, then double-click:
+       apply-gamepad-config.bat
+   It backs up User.ini and Rune.ini (as *.gov-bak) and writes every
+   required setting and all the gamepad bindings for you.
 
-4. In Rune.ini, section [WinDrv.WindowsClient], set:
+4. Connect ONE gamepad (powered on) and launch the game.
+
+To undo everything later, double-click restore-original-config.bat.
+
+If Windows shows a blue "Windows protected your PC" box, click
+"More info" -> "Run anyway" (the patcher is plain text - you can open
+patch-config.ps1 in Notepad and read exactly what it does).
+
+
+MANUAL SETUP  (only if you'd rather not use the patcher)
+--------------------------------------------------------
+Copy winmm.dll, SDL2.dll, sdljoy.ini into System\. Then:
+
+In Rune.ini, section [WinDrv.WindowsClient], set:
 	UseJoystick=True       (OFF by default - nothing works without it)
 	InvertVertical=False   (otherwise vertical look is flipped)
 	DeadZoneXYZ=True
 	DeadZoneRUV=True
-	ScaleXYZ=1000.000000   (1000 is default value for Classic. For Rune Gold the default is 2000, so change it to 1000)
-	ScaleRUV=1000.000000   (1000 is default value for Classic. For Rune Gold the default is 2000, so change it to 1000)
+	ScaleXYZ=1000.000000   (Classic default 1000; Rune Gold defaults to 2000 - set 1000)
+	ScaleRUV=1000.000000   (same: keep 1000 and tune the stick in sdljoy.ini)
 	UseDirectInput=False
 
-5. Open User.ini, find the [Engine.Input] section and replace the
-   Joy1..Joy16 / JoyX..JoyV / JoyPov* lines with the block from
-   copy_this_to_User_ini.txt
-
-6. Connect a gamepad and launch the game.
+Open User.ini, find the [Engine.Input] section and replace the
+Joy1..Joy16 / JoyX..JoyV / JoyPov* lines with the block from
+copy_this_to_User_ini.txt
 
 Make all config edits with the game CLOSED - UE1 rewrites
 User.ini and Rune.ini on exit.
@@ -81,8 +97,14 @@ CONTROLLERS
 Any gamepad SDL2 can see works (Xbox, PlayStation, Switch, generic)
 Connect the gamepad BEFORE launching the game.
 Keep ONLY ONE gamepad connected - two at once can cause input
-conflicts (an individual button may "drop out"). If something
-sticks, disconnect the extra pad and/or reboot the PC.
+conflicts (an individual button may "drop out").
+If a button doesn't respond (e.g. A / Jump):
+  1) Close Rune.
+  2) Switch the gamepad Off and turn it back On (unplug/plug it back if it
+     is wired), then start the game again.
+  3) If it doesn't help - simply restart your PC (or re-login into your
+     Windows user on Win10/11) and it will remedy the bug.
+Keep ONLY ONE controller connected.
 
 
 TUNING

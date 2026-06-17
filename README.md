@@ -82,7 +82,14 @@ copy_this_to_User_ini.txt  ← controller bindings (to paste into User.ini)
 ```
 *(Optional: `gamecontrollerdb.txt` for exotic pads.)*
 
-Then in `Rune.ini`, section `[WinDrv.WindowsClient]`, set:
+**Easiest — run the patcher.** With the game **closed**, double-click
+**`apply-gamepad-config.bat`**. It backs up `User.ini`/`Rune.ini` (as `*.gov-bak`)
+and writes every required setting plus all the gamepad bindings for you.
+`restore-original-config.bat` undoes it. Then connect one gamepad and launch.
+
+<details><summary><b>Manual setup</b> (if you'd rather not use the patcher)</summary>
+
+In `Rune.ini`, section `[WinDrv.WindowsClient]`, set:
 
 ```
 UseJoystick=True        ; OFF by default — nothing works without it
@@ -94,9 +101,10 @@ ScaleRUV=1000.000000    ; same: keep 1000 and tune the right stick in sdljoy.ini
 UseDirectInput=False    ; force the WinMM path the shim hooks
 ```
 
-Finally, paste the contents of **`copy_this_to_User_ini.txt`** into `User.ini`'s
+Then paste the contents of **`copy_this_to_User_ini.txt`** into `User.ini`'s
 `[Engine.Input]` section (replacing the existing `Joy1..Joy16 / JoyX..JoyV /
 JoyPov*` lines).
+</details>
 
 Edit configs with the **game closed** — UE1 rewrites `User.ini`/`Rune.ini` on exit.
 Connect **one** gamepad (powered on) **before** launching, or SDL won't pick it up.
@@ -171,8 +179,11 @@ of `aBaseX`; otherwise the binding approach is identical.
 - **No controller detected** — confirm `SDL2.dll` is the **32-bit** build and sits in
   `System\`; make sure the pad is connected/on *before* launch; try a different
   `controller_index`; drop in `gamecontrollerdb.txt`.
-- **One button "drops out" / weird input** — keep only **one** gamepad connected; two
-  pads at once can conflict. Disconnect the extra and/or reboot.
+- **A button (or any) "drops out" on launch** — (1) close Rune; (2) switch the gamepad
+  off and back on (unplug/plug it back if wired), then start the game again; (3) if that
+  doesn't help, restart your PC (or re-login to your Windows user on Win10/11) and it
+  will remedy the bug. Keep only **one** controller connected. The binding itself is
+  fine — it's the controller's session state, which reconnecting resets.
 - **Edits don't stick** — close the game before editing; if the game is under
   `C:\Program Files\`, Windows redirects configs to `%LOCALAPPDATA%\VirtualStore`
   (run as admin or install outside Program Files).
